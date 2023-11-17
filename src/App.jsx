@@ -31,6 +31,8 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
+    toast.success('Open console to see the form data');
+
     // If you use any file input in your form, then you definitely use this (form.data())
     axios.post('/api/v1/user', form.data()).then((res) => {
       console.log(res);
@@ -48,6 +50,7 @@ function App() {
 
   const handelReset = () => {
     form.reset();
+    toast.success('Form reset successfully');
   };
 
   return (
