@@ -51,9 +51,9 @@ function App() {
   };
 
   return (
-    <Card style={{ width: '22rem' }}>
+    <Card style={{ width: '28rem' }}>
       <Card.Header as='h4' className='text-center'>
-        New User
+        Add New User
       </Card.Header>
       <Card.Body>
         <Form onSubmit={handleSubmit}>
@@ -224,7 +224,7 @@ function App() {
           </Form.Group>
         </Form>
       </Card.Body>
-      <Card.Footer className='text-center' style={{ minHeight: '12vh' }}>
+      <Card.Footer className='text-center'>
         <Alert variant='success'>
           <h6 className='fs-5'>
             Source code ={' '}

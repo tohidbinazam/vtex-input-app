@@ -12,7 +12,7 @@ You can use this package with any react ui library like React-Bootstrap, Materia
 Live demo 👇
 
 ```HTML
-https://doccure-dashboard.onrender.com/
+https://vtex-input-demo.onrender.com/
 ```
 
 Source code 👇
