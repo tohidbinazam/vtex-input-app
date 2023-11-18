@@ -31,7 +31,7 @@ function App() {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(input);
-    toast.success('Open console to see the form data');
+    toast.success('Check console to see the data');
 
     // If you use any file input in your form, then you definitely use this (form.data())
     axios.post('/api/v1/user', form.data()).then((res) => {
@@ -118,8 +118,8 @@ function App() {
             {/* You can also use these checkboxes in the loop in the same way */}
             <Form.Check
               id='1'
-              name='permissions'
               type='checkbox'
+              name='permissions'
               checked={input.permissions?.includes('product')}
               onChange={inputChange}
               value='product'
@@ -127,8 +127,8 @@ function App() {
             />
             <Form.Check
               id='2'
-              name='permissions'
               type='checkbox'
+              name='permissions'
               checked={input.permissions?.includes('order')}
               onChange={inputChange}
               value='order'
@@ -136,8 +136,8 @@ function App() {
             />
             <Form.Check
               id='3'
-              name='permissions'
               type='checkbox'
+              name='permissions'
               checked={input.permissions?.includes('store')}
               onChange={inputChange}
               value='store'
@@ -145,8 +145,8 @@ function App() {
             />
             <Form.Check
               id='4'
-              name='permissions'
               type='checkbox'
+              name='permissions'
               checked={input.permissions?.includes('chart')}
               onChange={inputChange}
               value='chart'
@@ -160,25 +160,28 @@ function App() {
               id='11'
               type='radio'
               name='gender'
-              value='male'
+              checked={input.gender?.includes('male')}
               onChange={inputChange}
+              value='male'
               label='Male'
             />
             <Form.Check
               id='22'
               type='radio'
               name='gender'
-              value='female'
+              checked={input.gender?.includes('female')}
               onChange={inputChange}
+              value='female'
               label='Female'
             />
             <Form.Check
               id='33'
               type='radio'
               name='gender'
+              checked={input.gender?.includes('other')}
+              onChange={inputChange}
               value='other'
               label='Other'
-              onChange={inputChange}
             />
           </Form.Group>
 
@@ -234,7 +237,7 @@ function App() {
             <b>
               <Alert.Link
                 target='_blank'
-                href='https://www.npmjs.com/package/vtex-input'
+                href='https://github.com/tohidbinazam/vtex-input-demo'
               >
                 GitHub
               </Alert.Link>
