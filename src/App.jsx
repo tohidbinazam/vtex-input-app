@@ -8,7 +8,7 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [input, inputChange, form, setInput] = vtexInput({
+  const [input, inputProps, form, setInput] = vtexInput({
     name: '',
     email: '',
     password: '',
@@ -33,23 +33,23 @@ function App() {
     console.log(input);
     toast.success('Check console to see the data');
 
-    // If you use any file input in your form, then you definitely use this (form.data())
+    // If you use any file input in your form, then you definitely use this form.data()
     axios.post('/api/v1/user', form.data()).then((res) => {
       console.log(res);
       toast.success('User created successfully');
-      form.reset();
+      form.clear();
     });
 
-    // If you don't use any file input in your form, then you can use (input OR form.data()) as you wish
+    // If you don't use any file input in your form, then you can use [input OR form.data()] as you wish
     axios.post('/api/v1/user', input).then((res) => {
       console.log(res);
       toast.success('User created successfully');
-      form.reset();
+      form.clear();
     });
   };
 
   const handelReset = () => {
-    form.reset();
+    form.clear();
     toast.success('Form reset successfully');
   };
 
@@ -63,10 +63,7 @@ function App() {
           <Form.Group className='mb-3'>
             <Form.Label>Name</Form.Label>
             <Form.Control
-              type='text'
-              name='name'
-              value={input.name}
-              onChange={inputChange}
+              {...inputProps('name', 'text')}
               placeholder='Give your name'
             />
             <Form.Text className='text-muted'>
@@ -76,10 +73,7 @@ function App() {
           <Form.Group className='mb-3'>
             <Form.Label>Email</Form.Label>
             <Form.Control
-              type='email'
-              name='email'
-              value={input.email}
-              onChange={inputChange}
+              {...inputProps('email', 'email')}
               placeholder='Give your email address'
             />
             <Form.Text className='text-muted'>
@@ -100,7 +94,7 @@ function App() {
 
           <Form.Group className='mb-3'>
             <Form.Label>Role</Form.Label>
-            <Form.Select name='role' onChange={inputChange} value={input.role}>
+            <Form.Select {...inputProps('role')}>
               <option>Select user role</option>
               <option value='super-admin'>Super Admin</option>
               <option value='admin'>Admin</option>
@@ -117,77 +111,65 @@ function App() {
             <Form.Label>Permissions</Form.Label>
             {/* You can also use these checkboxes in the loop in the same way */}
             <Form.Check
-              id='1'
-              type='checkbox'
-              name='permissions'
-              checked={input.permissions?.includes('product')}
-              onChange={inputChange}
-              value='product'
+              id='Product'
               label='Product'
+              value='product'
+              {...inputProps('permissions', 'checkbox')}
+              // Those "checked" are used when you edit the existing form data with initial value
+              // checked={input.permissions?.includes('product')}
             />
             <Form.Check
-              id='2'
-              type='checkbox'
-              name='permissions'
-              checked={input.permissions?.includes('order')}
-              onChange={inputChange}
-              value='order'
+              id='Order'
               label='Order'
+              value='order'
+              {...inputProps('permissions', 'checkbox')}
+              // checked={input.permissions?.includes('order')}
             />
             <Form.Check
-              id='3'
-              type='checkbox'
-              name='permissions'
-              checked={input.permissions?.includes('store')}
-              onChange={inputChange}
-              value='store'
+              id='Store'
               label='Store'
+              value='store'
+              {...inputProps('permissions', 'checkbox')}
+              // checked={input.permissions?.includes('store')}
             />
             <Form.Check
-              id='4'
-              type='checkbox'
-              name='permissions'
-              checked={input.permissions?.includes('chart')}
-              onChange={inputChange}
-              value='chart'
+              id='Chart'
               label='Chart'
+              value='chart'
+              {...inputProps('permissions', 'checkbox')}
+              // checked={input.permissions?.includes('chart')}
             />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Gender</Form.Label>
             <Form.Check
-              id='11'
-              type='radio'
-              name='gender'
-              checked={input.gender?.includes('male')}
-              onChange={inputChange}
-              value='male'
+              id='Male'
               label='Male'
+              value='male'
+              {...inputProps('gender', 'radio')}
+              // Those "checked" are used when you edit the existing form data with initial value
+              // checked={input.gender?.includes('male')}
             />
             <Form.Check
-              id='22'
-              type='radio'
-              name='gender'
-              checked={input.gender?.includes('female')}
-              onChange={inputChange}
-              value='female'
+              id='Female'
               label='Female'
+              value='female'
+              {...inputProps('gender', 'radio')}
+              // checked={input.gender?.includes('female')}
             />
             <Form.Check
-              id='33'
-              type='radio'
-              name='gender'
-              checked={input.gender?.includes('other')}
-              onChange={inputChange}
-              value='other'
+              id='Other'
               label='Other'
+              value='other'
+              {...inputProps('gender', 'radio')}
+              // checked={input.gender?.includes('other')}
             />
           </Form.Group>
 
           <Form.Group className='mb-3'>
             <Form.Label>Profile Photo</Form.Label>
-            <Form.Control name='photo' type='file' onChange={inputChange} />
+            <Form.Control {...inputProps('photo', 'file')} />
           </Form.Group>
           {input.photo && (
             <div className='mb-3'>
@@ -198,15 +180,10 @@ function App() {
 
           <Form.Group className='mb-3'>
             <Form.Label>Gallery Photos</Form.Label>
-            <Form.Control
-              name='gallery'
-              type='file'
-              onChange={inputChange}
-              multiple
-            />
+            <Form.Control {...inputProps('gallery', 'file')} multiple />
           </Form.Group>
           {input.gallery &&
-            input.gallery.urls.map((url, index) => (
+            input.gallery.url.map((url, index) => (
               <div className='mb-3' key={index}>
                 <img src={url} alt='gallery' width={200} />
                 <button onClick={() => form.delFile('gallery', index)}>
@@ -237,7 +214,7 @@ function App() {
             <b>
               <Alert.Link
                 target='_blank'
-                href='https://github.com/tohidbinazam/vtex-input-demo'
+                href='https://github.com/tohidbinazam/vtex-input-app'
               >
                 GitHub
               </Alert.Link>
