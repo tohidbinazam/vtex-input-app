@@ -115,29 +115,28 @@ function App() {
               label='Product'
               value='product'
               {...inputProps('permissions', 'checkbox')}
-              // Those "checked" are used when you edit the existing form data with initial value
-              // checked={input.permissions?.includes('product')}
+              checked={input.permissions?.includes('product')}
             />
             <Form.Check
               id='Order'
               label='Order'
               value='order'
               {...inputProps('permissions', 'checkbox')}
-              // checked={input.permissions?.includes('order')}
+              checked={input.permissions?.includes('order')}
             />
             <Form.Check
               id='Store'
               label='Store'
               value='store'
               {...inputProps('permissions', 'checkbox')}
-              // checked={input.permissions?.includes('store')}
+              checked={input.permissions?.includes('store')}
             />
             <Form.Check
               id='Chart'
               label='Chart'
               value='chart'
               {...inputProps('permissions', 'checkbox')}
-              // checked={input.permissions?.includes('chart')}
+              checked={input.permissions?.includes('chart')}
             />
           </Form.Group>
 
@@ -148,22 +147,21 @@ function App() {
               label='Male'
               value='male'
               {...inputProps('gender', 'radio')}
-              // Those "checked" are used when you edit the existing form data with initial value
-              // checked={input.gender?.includes('male')}
+              checked={input.gender?.includes('male')}
             />
             <Form.Check
               id='Female'
               label='Female'
               value='female'
               {...inputProps('gender', 'radio')}
-              // checked={input.gender?.includes('female')}
+              checked={input.gender?.includes('female')}
             />
             <Form.Check
               id='Other'
               label='Other'
               value='other'
               {...inputProps('gender', 'radio')}
-              // checked={input.gender?.includes('other')}
+              checked={input.gender?.includes('other')}
             />
           </Form.Group>
 
