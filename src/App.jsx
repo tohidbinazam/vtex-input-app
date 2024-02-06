@@ -8,22 +8,22 @@ import axios from 'axios';
 import './App.css';
 
 function App() {
-  const [input, inputProps, form, setInput] = vtexInput({
+  const [input, inputProps, form, setValue] = vtexInput({
     name: '',
     email: '',
     password: '',
     role: '',
-    permissions: [],
+    permissions: '',
     gender: '',
-    photo: null,
-    gallery: null,
+    photo: '',
+    gallery: '',
   });
 
   const handlePassword = () => {
     const password = Math.random().toString(36).slice(-8);
 
-    // You can set custom input value like this
-    setInput((prev) => ({ ...prev, password }));
+    // You can set custom key value like this
+    setValue({ password });
 
     toast.success('Password generated successfully');
   };
@@ -40,7 +40,7 @@ function App() {
       form.clear();
     });
 
-    // If you don't use any file input in your form, then you can use [input OR form.data()] as you wish
+    // If you don't use any file input in your form, then you can use [input / form.data() / form.input()] as you wish
     axios.post('/api/v1/user', input).then((res) => {
       console.log(res);
       toast.success('User created successfully');
@@ -64,7 +64,7 @@ function App() {
             <Form.Label>Name</Form.Label>
             <Form.Control
               {...inputProps('name', 'text')}
-              placeholder='Give your name'
+              placeholder='Give your full name'
             />
             <Form.Text className='text-muted'>
               we will never share your data with anyone else
@@ -111,31 +111,27 @@ function App() {
             <Form.Label>Permissions</Form.Label>
             {/* You can also use these checkboxes in the loop in the same way */}
             <Form.Check
-              id='Product'
+              id='1'
               label='Product'
-              value='product'
-              {...inputProps('permissions', 'checkbox')}
+              {...inputProps('permissions', 'checkbox', 'product')}
               checked={input.permissions?.includes('product')}
             />
             <Form.Check
-              id='Order'
+              id='2'
               label='Order'
-              value='order'
-              {...inputProps('permissions', 'checkbox')}
+              {...inputProps('permissions', 'checkbox', 'order')}
               checked={input.permissions?.includes('order')}
             />
             <Form.Check
-              id='Store'
+              id='3'
               label='Store'
-              value='store'
-              {...inputProps('permissions', 'checkbox')}
+              {...inputProps('permissions', 'checkbox', 'store')}
               checked={input.permissions?.includes('store')}
             />
             <Form.Check
-              id='Chart'
+              id='4'
               label='Chart'
-              value='chart'
-              {...inputProps('permissions', 'checkbox')}
+              {...inputProps('permissions', 'checkbox', 'chart')}
               checked={input.permissions?.includes('chart')}
             />
           </Form.Group>
@@ -143,24 +139,21 @@ function App() {
           <Form.Group className='mb-3'>
             <Form.Label>Gender</Form.Label>
             <Form.Check
-              id='Male'
+              id='11'
               label='Male'
-              value='male'
-              {...inputProps('gender', 'radio')}
+              {...inputProps('gender', 'radio', 'male')}
               checked={input.gender?.includes('male')}
             />
             <Form.Check
-              id='Female'
+              id='22'
               label='Female'
-              value='female'
-              {...inputProps('gender', 'radio')}
+              {...inputProps('gender', 'radio', 'female')}
               checked={input.gender?.includes('female')}
             />
             <Form.Check
-              id='Other'
+              id='33'
               label='Other'
-              value='other'
-              {...inputProps('gender', 'radio')}
+              {...inputProps('gender', 'radio', 'other')}
               checked={input.gender?.includes('other')}
             />
           </Form.Group>
@@ -181,9 +174,9 @@ function App() {
             <Form.Control {...inputProps('gallery', 'file')} multiple />
           </Form.Group>
           {input.gallery &&
-            input.gallery.url.map((url, index) => (
+            input.gallery.map((data, index) => (
               <div className='mb-3' key={index}>
-                <img src={url} alt='gallery' width={200} />
+                <img src={data.url} alt='gallery' width={200} />
                 <button onClick={() => form.delFile('gallery', index)}>
                   Delete
                 </button>
