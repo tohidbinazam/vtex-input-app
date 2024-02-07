@@ -40,12 +40,14 @@ function App() {
       form.clear();
     });
 
-    // If you don't use any file input in your form, then you can use [input / form.data() / form.input()] as you wish
+    // If you don't use any file input in your form, then you can use [input OR form.data()] as you wish
     axios.post('/api/v1/user', input).then((res) => {
       console.log(res);
       toast.success('User created successfully');
       form.clear();
     });
+
+    // If you send all input data with file input data to firebase or something else then you can use form.input() to get the all solid data
   };
 
   const handelReset = () => {
@@ -165,7 +167,9 @@ function App() {
           {input.photo && (
             <div className='mb-3'>
               <img src={input.photo.url} alt='photo' width={200} />
-              <button onClick={() => form.delFile('photo')}>Delete</button>
+              <Button variant='dark' onClick={() => form.delFile('photo')}>
+                Delete
+              </Button>
             </div>
           )}
 
@@ -177,9 +181,12 @@ function App() {
             input.gallery.map((data, index) => (
               <div className='mb-3' key={index}>
                 <img src={data.url} alt='gallery' width={200} />
-                <button onClick={() => form.delFile('gallery', index)}>
+                <Button
+                  variant='dark'
+                  onClick={() => form.delFile('gallery', index)}
+                >
                   Delete
-                </button>
+                </Button>
               </div>
             ))}
 
