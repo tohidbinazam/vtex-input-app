@@ -113,25 +113,25 @@ function App() {
             <Form.Label>Permissions</Form.Label>
             {/* You can also use these checkboxes in the loop in the same way */}
             <Form.Check
-              id='1'
+              id='product'
               label='Product'
               {...inputProps('permissions', 'checkbox', 'product')}
               checked={input.permissions?.includes('product')}
             />
             <Form.Check
-              id='2'
+              id='order'
               label='Order'
               {...inputProps('permissions', 'checkbox', 'order')}
               checked={input.permissions?.includes('order')}
             />
             <Form.Check
-              id='3'
+              id='store'
               label='Store'
               {...inputProps('permissions', 'checkbox', 'store')}
               checked={input.permissions?.includes('store')}
             />
             <Form.Check
-              id='4'
+              id='chart'
               label='Chart'
               {...inputProps('permissions', 'checkbox', 'chart')}
               checked={input.permissions?.includes('chart')}
@@ -141,19 +141,19 @@ function App() {
           <Form.Group className='mb-3'>
             <Form.Label>Gender</Form.Label>
             <Form.Check
-              id='11'
+              id='male'
               label='Male'
               {...inputProps('gender', 'radio', 'male')}
               checked={input.gender?.includes('male')}
             />
             <Form.Check
-              id='22'
+              id='female'
               label='Female'
               {...inputProps('gender', 'radio', 'female')}
               checked={input.gender?.includes('female')}
             />
             <Form.Check
-              id='33'
+              id='other'
               label='Other'
               {...inputProps('gender', 'radio', 'other')}
               checked={input.gender?.includes('other')}
